@@ -1,0 +1,101 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+.nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #ffb535;
+    padding: 15px;
+}
+.logo{
+    font-weight: 600;
+}
+ul{
+    display: flex;
+    gap: 20px;
+}
+ul li{
+    list-style: none;
+}
+.container {
+    width: 100%;
+    padding-right: 2rem;
+    padding-left: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #eaeaeac6;
+    max-height: 00px;
+    height: 50vh;
+    min-height: 400px;
+    overflow: hidden;
+}
+.form{
+    min-width: 400px;
+}
+
+.input{
+    padding: 0.6rem;
+    border: none;
+    outline: 0;
+    min-width: 400px;
+    width: 100%;
+    border-radius: 5px;
+    
+}
+.input:focus{
+    outline: none;
+}
+
+.btn{
+    display: block;
+    margin-top: 5px;
+    width: 100%;
+    padding: 0.4rem;
+    background-color: #fba91c;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+}
+  
+  @media (min-width: 576px) {
+    .custom-container {
+      max-width: 540px;
+    }
+  }
+  
+  @media (min-width: 768px) {
+    .custom-container {
+      max-width: 720px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .custom-container {
+      max-width: 960px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    .custom-container {
+      max-width: 1140px;
+    }
+  }
+  
+  @media (min-width: 1400px) {
+    .custom-container {
+      max-width: 1320px;
+    }
+  }
+  

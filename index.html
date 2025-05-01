@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Speech</title>
+</head>
+<body>
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">Hi</div>
+            <ul>
+                <li>Home</li>
+                <li>About</li>
+                <li>Login</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="hero">
+            <div class="form">
+                <textarea type="text" class="input" rows="10"></textarea>
+                <input type="submit" class="btn">
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+        const input = document.querySelector('.input')
+        const btn = document.querySelector('.btn')
+
+        const textToSpeech = () =>{
+            let text = input.value
+            const voice = new SpeechSynthesisUtterance(text)
+            window.speechSynthesis.speak(voice)
+            console.log(text)
+        }
+
+        btn.addEventListener('click', textToSpeech)
+
+    </script>
+</body>
+</html>
