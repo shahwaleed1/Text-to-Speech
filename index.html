@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Speech</title>
 </head>
 <body>
@@ -21,7 +22,14 @@
         <div class="hero">
             <div class="form">
                 <textarea type="text" class="input" rows="10"></textarea>
-                <input type="submit" class="btn">
+                <div>
+                    <select name="voices" id="voiceSelect">
+                        <option value="">Choose One </option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+                <button class="btn"><i class="fa-solid fa-volume-high"></i> Speech</button>
             </div>
         </div>
     </div>
@@ -30,17 +38,46 @@
 
 
     <script>
-        const input = document.querySelector('.input')
-        const btn = document.querySelector('.btn')
+    const input = document.querySelector('.input');
+    const btn = document.querySelector('.btn');
+    const voiceSelect = document.getElementById('voiceSelect');
 
-        const textToSpeech = () =>{
-            let text = input.value
-            const voice = new SpeechSynthesisUtterance(text)
-            window.speechSynthesis.speak(voice)
-            console.log(text)
+    let voices = [];
+
+    // Load voices
+    const loadVoices = () => {
+        voices = speechSynthesis.getVoices();
+    };
+
+    // Chrome bug workaround: some voices don't load until speechSynthesis is used
+    speechSynthesis.onvoiceschanged = loadVoices;
+
+    const textToSpeech = () => {
+        let text = input.value;
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        // Choose voice based on gender
+        const selectedGender = voiceSelect.value;
+
+        if (selectedGender) {
+            // Try to find a matching voice
+            const genderVoices = voices.filter(voice =>
+                selectedGender === 'male'
+                    ? /male|man|david/i.test(voice.name + voice.voiceURI)
+                    : /female|woman|zira/i.test(voice.name + voice.voiceURI)
+            );
+
+            if (genderVoices.length > 0) {
+                utterance.voice = genderVoices[0]; // Use the first match
+            }
         }
 
-        btn.addEventListener('click', textToSpeech)
+        speechSynthesis.speak(utterance);
+        console.log(text);
+    };
+
+    btn.addEventListener('click', textToSpeech);
+
 
     </script>
 </body>
